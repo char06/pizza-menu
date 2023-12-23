@@ -62,18 +62,23 @@ function Menu() {
     const pizzas = pizzaData;
     const numPizzas = pizzas.length;
     return (
-    <main className="menu">
+<main className="menu">
         <h2>Our Menu</h2>
 
    {numPizzas > 0 ? (
-    <ul className="pizzas">
-        {pizzas.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name}/>
+<>
+      <p>The wood-fired oven crackles in the background, lending a signature smokiness to the thin, crispy crusts. Whether you're seeking a quick lunch, a casual dinner, or a cozy date night, React's Pizza Co promises an unforgettable experience that transcends the ordinary, leaving patrons craving more of their delectable creations.</p>
+
+      <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name}/>
         ))}
-    </ul>
+      </ul>
+</>
    ): <p>Our Menu is under construction please come back later</p>}
- 
-    </main>
+
+</main>
+
     );
 }
 
