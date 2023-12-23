@@ -58,32 +58,21 @@ function App() {
 
 //Menu Component 
 
-function Menu() { 
+function Menu() {
+    const pizzas = pizzaData;
+    const numPizzas = pizzas.length;
     return (
     <main className="menu">
         <h2>Our Menu</h2>
-    <div>
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza}/>
+
+   {numPizzas > 0 ? (
+    <ul className="pizzas">
+        {pizzas.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name}/>
         ))}
-    </div>
-
-
-
-
-        {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-        />
-
-        <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mozarella, mushrooms, and onion"
-        photoName="pizzas/funghi.jpg"
-        price={12}
-        />     */}
+    </ul>
+   ): <p>Our Menu is under construction please come back later</p>}
+ 
     </main>
     );
 }
@@ -92,14 +81,14 @@ function Menu() {
 
 function Pizza(props) {
     return (
-     <div className="pizza">
+     <li className="pizza">
         <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
         <div>
            <h3>{props.pizzaObj.name}</h3>
            <p>{props.pizzaObj.ingredients}</p>
            <span>{props.pizzaObj.price}</span>
         </div>
-    </div>
+    </li>
     );
 }
 
@@ -121,12 +110,13 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
-//   if (hour >= openHour && hour <= closeHour) alert("We're currently OPEN!"); else alert("Sorry we're currently CLOSE!");
-   
     return  <footer className="footer">
-        {new Date().toLocaleTimeString()}. We're currently open</footer>
+        <div className="order">
+           {isOpen ? <p>We're currently open until {closeHour}:00. Come visit us or order online.</p> : <p>Sorry we are currently closed</p>} 
+           <button className="btn">Order Online</button>
+        </div>     
+        </footer>
 }
-
 
 //The way we render the app in react v18
 
